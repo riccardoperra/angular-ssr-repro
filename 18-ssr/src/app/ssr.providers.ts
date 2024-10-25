@@ -2,22 +2,23 @@ import {inject, InjectionToken, type Provider} from '@angular/core';
 
 export const SSR_ONLY_UPDATE_STATUS_HANDLER = new InjectionToken<(code: number) => void>('')
 
-export const API_URL = new InjectionToken<string>('');
+export const API_URL = new InjectionToken<string>('apiUrl');
 
-class _ExternalClient {
-  constructor(baseUrl: string) {
-    console.log("Create external client with base url", baseUrl);
+export const ExternalClientToken = new InjectionToken<{url: string}>('external client');
+
+export function createExternalClient(url: string) {
+  return {
+    url
   }
 }
 
-const ExternalClient = new InjectionToken<_ExternalClient>('external client');
 
 export function provideExternalClient(): Provider {
   return {
-    provide: ExternalClient,
+    provide: ExternalClientToken,
     useFactory: () => {
-      const url = inject(API_URL);
-      return new _ExternalClient(url)
+      const url = inject(API_URL, {optional: true});
+      return createExternalClient(url ?? '');
     }
   }
 }

@@ -27,12 +27,10 @@ export function app(): express.Express {
   }));
 
   // All regular routes use the Angular engine
-  server.get('**', (req, res, next) => {
+  server.get('*', (req, res, next) => {
     const {protocol, originalUrl, baseUrl, headers} = req;
 
     const apiUrl = req.header('x-gw-url') ?? 'http://localhost:3000';
-
-    console.log("req from url", originalUrl);
 
     commonEngine
       .render({
@@ -45,7 +43,7 @@ export function app(): express.Express {
           {provide: API_URL, useValue: apiUrl},
           {
             provide: SSR_ONLY_UPDATE_STATUS_HANDLER,
-            useValue: (code: number) => res.sendStatus(code)
+            useValue: (code: number) => res.status(code)
           }
         ],
       })

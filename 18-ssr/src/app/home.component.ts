@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import { API_URL } from './ssr.providers';
+import { API_URL, ExternalClientToken } from './ssr.providers';
 
 @Component({
   selector: 'app-home',
@@ -16,5 +16,7 @@ export class HomeComponent {
 
   constructor() {
     console.log("server api url", this.apiUrl)
+
+    console.log(inject(ExternalClientToken, {optional: true}));
   }
 }
