@@ -14,7 +14,6 @@
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/ssr-new",
-            // New in v19: outputMode
             "outputMode": "server",
 
             "index": "src/index.html",
