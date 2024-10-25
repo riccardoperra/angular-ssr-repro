@@ -11,9 +11,9 @@ export class ErrorRouteComponent {
 
   constructor() {
     setTimeout(() => {
+      console.log("set timeout", this.updateStatus);
       // Imagine an http call
-      const error = Math.random() > 0.5;
-      if (error && this.updateStatus) {
+      if (true && this.updateStatus) {
         this.updateStatus(400)
       }
     }, 1000)

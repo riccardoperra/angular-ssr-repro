@@ -1,12 +1,20 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
+import { API_URL } from './ssr.providers';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   template: `
     Home component.
+    API Url: {{apiUrl}}
+
     Go to /error
   `
 })
 export class HomeComponent {
+  readonly apiUrl = inject(API_URL, {optional: true});
+
+  constructor() {
+    console.log("server api url", this.apiUrl)
+  }
 }
