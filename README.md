@@ -12,3 +12,5 @@ The API_URL token must be available in both server and client and **must** be us
 I tried to reproduce those features in the 19-ssr app with the new engine. I may use the `request_context` token, but it's not always present. It seems that there are some times that it's always null, or maybe after a refresh it's evaluated.
 
 It also seems that calling the `res.status` given via REQUEST_CONTEXT doesn't work, the status is not updated.
+
+![alt text](image.png)
